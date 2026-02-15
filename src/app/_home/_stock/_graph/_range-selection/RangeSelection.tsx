@@ -58,7 +58,7 @@ export function RangeSelection({
 	return (
 		<Select value={range} onValueChange={onSelectRange}>
 			<SelectTrigger
-				className="hidden w-40 rounded-lg sm:ml-auto sm:flex"
+				className="w-full rounded-lg sm:ml-auto sm:flex"
 				aria-label="Select a time range"
 			>
 				<SelectValue placeholder="Last 1 day" />
