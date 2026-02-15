@@ -7,4 +7,6 @@ export type RangeType =
 	"1d" |
 	"5d" |
 	"1mo" |
-	"1y"
+	"3mo" |
+	"1y" |
+	"5y"

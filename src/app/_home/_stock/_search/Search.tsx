@@ -2,24 +2,27 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { SearchProps } from "./SearchProps";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useImperativeHandle, useRef, useState } from "react";
 import { StoxyxService } from "@/src/services";
 import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "@/components/ui/input-group";
 
 export function Search({
-	onChangeStockData
+	onChangeStockData,
+	ref
 }: SearchProps) {
 	const
 		[stock, setStock] =
 			useState<string>(""),
+		[range, setRange] =
+			useState<StoxyxService.Api.V1.Stock.Chart.RangeType>("1d"),
 		searchStockRef
 			= useRef<HTMLInputElement>(null),
 		{ data } =
 			useQuery({
-				queryKey: ["stock", stock],
+				queryKey: ["stock", stock, range],
 				queryFn({ signal }) {
 					return StoxyxService.Api.V1.Stock.Chart.fn({
-						range: "1d",
+						range: range,
 						stock: stock,
 					}, {
 						signal
@@ -28,7 +31,7 @@ export function Search({
 					})
 				},
 				staleTime: 10 * 1000 * 60,
-				enabled: !!stock
+				enabled: !!stock && !!range
 			}),
 		onFetchStockData: NonNullable<React.ComponentProps<"button">["onClick"]> = useCallback(() => {
 			if (searchStockRef.current?.value) {
@@ -37,6 +40,14 @@ export function Search({
 		}, [
 			setStock
 		])
+
+	useImperativeHandle(ref, () => {
+		return {
+			onChangeStockRange(range_) {
+				setRange(range_)
+			},
+		}
+	})
 
 	useEffect(() => {
 		if (data?.length) {
