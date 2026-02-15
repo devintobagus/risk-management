@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-	title: "Risk Management",
+	title: "Stoxyx",
 	description: "The tool helps you plan and execute smarter trades with proper risk control.",
 };
 
