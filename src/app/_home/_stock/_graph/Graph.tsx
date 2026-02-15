@@ -89,8 +89,9 @@ export function Graph({
 						interval="preserveStartEnd"
 						tickFormatter={(value) =>
 							new Date(value * 1000).toLocaleDateString("en-US", {
-								month: "short",
 								day: "numeric",
+								month: "short",
+								// year: "numeric",
 								hour: "2-digit",
 								minute: "2-digit",
 							})
@@ -107,6 +108,18 @@ export function Graph({
 						cursor={false}
 						content={
 							<ChartTooltipContent
+								labelFormatter={(_, payload) => {
+									if (!payload.length) return null
+
+									const ts = payload[0].payload.timestamp
+									return new Date(ts * 1000).toLocaleString("en-US", {
+										day: "numeric",
+										month: "short",
+										year: "numeric",
+										hour: "2-digit",
+										minute: "2-digit",
+									})
+								}}
 								indicator="dot"
 							/>
 						}

@@ -1,6 +1,6 @@
 "use client"
 
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { useCallback, useRef } from "react"
 import { Header, HeaderRef } from "./_header"
 import { Search, SearchProps, SearchRef } from "./_search"
@@ -27,11 +27,9 @@ export function Stock() {
 
 	return (
 		<Card className="max-w-7xl h-136.75">
-			<CardHeader className="w-full">
-				<Header
-					ref={headerRef}
-				/>
-			</CardHeader>
+			<Header
+				ref={headerRef}
+			/>
 			<CardContent className="flex flex-col gap-3">
 				<Search
 					onChangeStockData={onChangeStockData}

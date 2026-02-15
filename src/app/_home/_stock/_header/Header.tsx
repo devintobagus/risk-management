@@ -22,7 +22,7 @@ export function Header({
 	return (
 		<CardHeader>
 			<CardTitle>{stockName || "Check your market here"}</CardTitle>
-			<CardDescription> Data powered by Yahoo Finance. For educational purposes only.</CardDescription>
+			<CardDescription> Powered by Yahoo Finance — for educational purposes only (Indonesian equities only).</CardDescription>
 		</CardHeader>
 	)
 }
