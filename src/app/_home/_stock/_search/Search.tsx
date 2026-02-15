@@ -52,8 +52,6 @@ export function Search({
 	useEffect(() => {
 		if (data?.length) {
 			onChangeStockData(data, stock)
-		} else {
-			onChangeStockData([], "")
 		}
 	}, [
 		onChangeStockData,
