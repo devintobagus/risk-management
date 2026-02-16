@@ -17,7 +17,9 @@ export function Header({
 				setStockName(stock_)
 			},
 		}
-	})
+	}, [
+		setStockName
+	])
 
 	return (
 		<CardHeader>

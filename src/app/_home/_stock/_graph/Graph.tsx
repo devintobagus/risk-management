@@ -44,7 +44,9 @@ export function Graph({
 				setData(data_.filter(item => item.close !== 0))
 			},
 		}
-	})
+	}, [
+		setData,
+	])
 
 	useEffect(() => {
 		if (data.length) {

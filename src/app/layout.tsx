@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
 	title: "Stoxyx",
 	description: "The tool helps you plan and execute smarter trades with proper risk control.",
+	robots: "noindex"
 };
 
 export default function RootLayout({

@@ -1,4 +1,4 @@
-export interface Request {
+export interface RequestData {
 	stock: string
 	range: RangeType
 }

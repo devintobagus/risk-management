@@ -47,7 +47,9 @@ export function Search({
 				setRange(range_)
 			},
 		}
-	})
+	}, [
+		setRange
+	])
 
 	useEffect(() => {
 		if (data?.length) {
