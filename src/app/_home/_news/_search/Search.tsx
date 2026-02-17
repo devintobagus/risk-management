@@ -34,7 +34,7 @@ export function Search({
 		onFetchNewsData: NonNullable<React.ComponentProps<"button">["onClick"]>
 			= useCallback(() => {
 				if (searchStockRef.current?.value) {
-					setStock(searchStockRef.current.value)
+					setStock(searchStockRef.current.value.toUpperCase())
 				}
 			}, [
 				setStock
