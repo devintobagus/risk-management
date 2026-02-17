@@ -52,7 +52,7 @@ export function Search({
 
 	return (
 		<InputGroup>
-			<InputGroupInput required ref={searchStockRef} placeholder="Type to search..." />
+			<InputGroupInput required ref={searchStockRef} placeholder="Search IDX stocks (e.g. BBCA, TLKM)" />
 			<InputGroupAddon align="inline-end">
 				<InputGroupButton
 					className="cursor-pointer"
