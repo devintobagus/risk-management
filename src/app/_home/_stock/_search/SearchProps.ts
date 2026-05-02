@@ -5,5 +5,6 @@ export interface SearchProps {
 		close: number,
 		timestamp: number
 	}[], stockName: string) => void
+	onLoadingChange: (loading: boolean) => void
 	ref: React.Ref<SearchRef>
 }

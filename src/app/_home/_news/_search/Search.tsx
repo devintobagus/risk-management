@@ -7,7 +7,8 @@ import { StoxyxService } from "@/src/services";
 import { useQuery } from "@tanstack/react-query";
 
 export function Search({
-	onChangeNewsData
+	onChangeNewsData,
+	onLoadingChange
 }: SearchProps) {
 	const
 		[stock, setStock]
@@ -15,7 +16,7 @@ export function Search({
 		searchStockRef
 			= useRef<HTMLInputElement>(null),
 
-		{ data } =
+		{ data, isFetching } =
 			useQuery({
 				queryKey: ["news", stock],
 				queryFn({ signal }) {
@@ -39,6 +40,10 @@ export function Search({
 			}, [
 				setStock
 			])
+
+	useEffect(() => {
+		onLoadingChange(isFetching)
+	}, [isFetching, onLoadingChange])
 
 	useEffect(() => {
 		if (data?.length) {

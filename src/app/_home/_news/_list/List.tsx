@@ -4,9 +4,11 @@ import { StoxyxService } from "@/src/services";
 import { ListProps } from "./ListProps";
 import { useImperativeHandle, useState } from "react";
 import { Item, ItemContent, ItemDescription, ItemTitle } from "@/components/ui/item";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export function List({
-	ref
+	ref,
+	isLoading
 }: ListProps) {
 	const
 		[news, setNews]
@@ -21,6 +23,21 @@ export function List({
 	}, [
 		setNews
 	])
+
+	if (isLoading) {
+		return (
+			<div className="flex w-full flex-col gap-3 max-h-85 overflow-y-auto">
+				{[...Array(5)].map((_, i) => (
+					<Item key={i} variant="outline">
+						<ItemContent>
+							<Skeleton className="h-4 w-3/4" />
+							<Skeleton className="h-3 w-2/5 mt-1" />
+						</ItemContent>
+					</Item>
+				))}
+			</div>
+		)
+	}
 
 	return (
 		<div className="flex w-full flex-col gap-3 max-h-85 overflow-y-auto">

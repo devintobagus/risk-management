@@ -5,6 +5,7 @@ import {
 	//  ChartLegend, ChartLegendContent,
 	ChartTooltip, ChartTooltipContent
 } from "@/components/ui/chart"
+import { Skeleton } from "@/components/ui/skeleton"
 import { GraphProps } from "./GraphProps"
 import { useCallback, useEffect, useImperativeHandle, useState } from "react"
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
@@ -19,6 +20,7 @@ const chartConfig = {
 
 export function Graph({
 	ref,
+	isLoading,
 	rangeSelectionProps
 }: GraphProps) {
 	const
@@ -57,6 +59,28 @@ export function Graph({
 		setTrend,
 		data
 	])
+
+	if (isLoading) {
+		return (
+			<>
+				<RangeSelection {...rangeSelectionProps} />
+				<div className="flex flex-col gap-3 h-62.5">
+					<div className="flex items-end gap-1 flex-1">
+						{[40, 65, 50, 80, 55, 70, 45, 90, 60, 75, 50, 85, 65, 45, 70, 55, 80, 60, 75, 50].map(
+							(h, i) => (
+								<Skeleton key={i} className="flex-1 rounded-sm" style={{ height: `${h}%` }} />
+							)
+						)}
+					</div>
+					<div className="flex gap-4">
+						{[...Array(5)].map((_, i) => (
+							<Skeleton key={i} className="h-3 flex-1" />
+						))}
+					</div>
+				</div>
+			</>
+		)
+	}
 
 	return (
 		<>

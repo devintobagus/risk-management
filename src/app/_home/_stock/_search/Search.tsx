@@ -8,6 +8,7 @@ import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "
 
 export function Search({
 	onChangeStockData,
+	onLoadingChange,
 	ref
 }: SearchProps) {
 	const
@@ -17,7 +18,7 @@ export function Search({
 			useState<StoxyxService.Api.V1.Stock.Chart.RangeType>("1d"),
 		searchStockRef
 			= useRef<HTMLInputElement>(null),
-		{ data } =
+		{ data, isFetching } =
 			useQuery({
 				queryKey: ["stock", stock, range],
 				queryFn({ signal }) {
@@ -50,6 +51,10 @@ export function Search({
 	}, [
 		setRange
 	])
+
+	useEffect(() => {
+		onLoadingChange(isFetching)
+	}, [isFetching, onLoadingChange])
 
 	useEffect(() => {
 		if (data?.length) {
